@@ -23,7 +23,6 @@ npm run lint
 ```
 
 
-
 ### Build the app for production
 ```bash
 quasar build
