@@ -1,5 +1,4 @@
 import os
-from functools import partial
 from pathlib import Path
 
 from decouple import Csv, config
@@ -60,13 +59,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'emprestimo.wsgi.application'
 
-INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
+# INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
 
 default_db_url = "sqlite:///" + str(BASE_DIR / "emprestimo.sqlite3")
 DATABASES = {
     "default": config("DATABASE_URL", default=default_db_url, cast=db_url)
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -82,6 +80,9 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://127.0.0.1:6379/0")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BACKEND", "redis://127.0.0.1:6379/0")
 
 # REST_FRAMEWORK = {
     # 'DEFAULT_AUTHENTICATION_CLASSES': (
