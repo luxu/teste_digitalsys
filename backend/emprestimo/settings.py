@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     'rest_framework',
     'rest_framework_simplejwt',
     'djoser',
@@ -58,8 +59,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'emprestimo.wsgi.application'
-
-# INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
 
 default_db_url = "sqlite:///" + str(BASE_DIR / "emprestimo.sqlite3")
 DATABASES = {
@@ -102,8 +101,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-BASE_URL = config("BASE_URL", "0.0.0.0")
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
